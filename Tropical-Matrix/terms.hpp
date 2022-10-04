@@ -13,6 +13,7 @@ using namespace std;
 class terms
 {
   private:
+    int aandb[8];
     int a;
     int b;
     int c;
@@ -22,7 +23,7 @@ class terms
     string term;
     void matrixmpy(bool);
     terms();
-    terms(string);
+    terms(string, int[8]);
     terms(const terms &);
     void printmat();
     bool operator==(const terms &);
@@ -33,21 +34,21 @@ void terms::matrixmpy(bool t)
 {
     if (t == true)
     {
-        this->a = max(this->a + A1, this->b + C1);
-        this->b = max(this->a + B1, this->b + D1);
-        this->c = max(this->c + A1, this->d + C1);
-        this->d = max(this->c + B1, this->d + D1);
+        this->a = max(this->a + aandb[1], this->b + aandb[3]);
+        this->b = max(this->a + aandb[2], this->b + aandb[4]);
+        this->c = max(this->c + aandb[1], this->d + aandb[3]);
+        this->d = max(this->c + aandb[2], this->d + aandb[4]);
     }
     else
     {
-        this->a = max(this->a + A2, this->b + C2);
-        this->b = max(this->a + B2, this->b + D2);
-        this->c = max(this->c + A2, this->d + C2);
-        this->d = max(this->c + B2, this->d + D2);
+        this->a = max(this->a + aandb[5], this->b + aandb[7]);
+        this->b = max(this->a + aandb[6], this->b + aandb[8]);
+        this->c = max(this->c + aandb[5], this->d + aandb[7]);
+        this->d = max(this->c + aandb[6], this->d + aandb[8]);
     }
 }
 terms::terms(){};
-terms::terms(string x0) : term(x0)
+terms::terms(string x0, int aandb[8]) : term(x0)
 {
     a = 0;
     b = -2000000000;
@@ -87,5 +88,20 @@ bool terms::operator<(const terms &x)
 {
     if (this->a < x.a)
         return true;
+    else if (this->a == x.a)
+    {
+        if (this->b < x.b)
+            return true;
+        else if (this->b == x.b)
+        {
+            if (this->c < x.c)
+                return true;
+            else if (this->c == x.c)
+            {
+                if (this->d < x.d)
+                    return true;
+            }
+        }
+    }
     return false;
 }
