@@ -1,5 +1,4 @@
 #include "..//include//test1.hpp"
-int G1 = 1;
 
 #include <algorithm>
 #include <cmath>
@@ -13,7 +12,6 @@ using namespace std;
 class terms
 {
   private:
-    int aandb[8];
     int a;
     int b;
     int c;
@@ -21,7 +19,7 @@ class terms
 
   public:
     string term;
-    void matrixmpy(bool);
+    void matrixmpy(bool, int[8]);
     terms();
     terms(string, int[8]);
     terms(const terms &);
@@ -30,7 +28,7 @@ class terms
     bool operator<(const terms &);
 };
 
-void terms::matrixmpy(bool t)
+void terms::matrixmpy(bool t, int aandb[8])
 {
     if (t == true)
     {
@@ -59,7 +57,7 @@ terms::terms(string x0, int aandb[8]) : term(x0)
     for (int i = 0; i < n; ++i)
     {
         t = x0[i] == 'a';
-        this->matrixmpy(t);
+        this->matrixmpy(t, aandb);
     }
 }
 terms::terms(const terms &term0)
