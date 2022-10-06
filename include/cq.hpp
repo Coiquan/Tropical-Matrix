@@ -127,17 +127,10 @@ int cq::read(const int p0, const int n1, vector<terms> &termses, int *counter0)
     delete file0;
 
     sort(termses.begin(), termses.end());
-    // test
-    int sz = termses.size();
-    cout << sz << endl;
-    for (int i = 0; i < sz; ++i)
-        termses[i].printmat();
-    // test
     return 0;
 }
 void cq::print(const int p0, bool &printb, int &n2, vector<terms> &termses, int *counters, int N)
 {
-    // int n2bu = n2;
     int szbu = 1;
     int sz = termses.size();
 
