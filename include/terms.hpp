@@ -1,11 +1,6 @@
-#include "..//include//test1.hpp"
-
-#include <algorithm>
 #include <cmath>
-#include <fstream>
 #include <iostream>
 #include <string>
-#include <vector>
 
 using namespace std;
 
