@@ -1,29 +1,31 @@
 #include <fstream>
+#include <iostream>
 #include <string>
 
 using namespace std;
 
-int MAXN = 25;
-int MINN = 2;
-
 void gnrt(int, int, char[], int, fstream &);
 int main()
 {
-    for (int N = MINN; N < MAXN + 1; ++N)
+    int N;
+    cin >> N;
+    if (N < 1 || N > 41)
     {
-        char *term = new char[N];
-        for (int A = 1; A < N / 2 + 1; ++A)
-        {
-            int B = N - A;
-            fstream *file0 = new fstream;
-            string name = "n=" + to_string(N) + "-a=" + to_string(A) + ".txt";
-            file0->open(name, ios::out);
-            gnrt(A, B, term, N, *file0);
-            file0->close();
-            delete file0;
-        }
-        delete[] term;
+        cout << "?";
+        exit(721);
     }
+    char *term = new char[N];
+    for (int A = 1, n1 = 0; A < N / 2 + 1; ++A, ++n1)
+    {
+        int B = N - A;
+        fstream *file0 = new fstream;
+        string name = to_string(n1) + ".txt";
+        file0->open(name, ios::out);
+        gnrt(A, B, term, N, *file0);
+        file0->close();
+        delete file0;
+    }
+    delete[] term;
 }
 
 void gnrt(int a, int b, char term[], int N, fstream &cout2f)
