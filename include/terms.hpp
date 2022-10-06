@@ -1,9 +1,3 @@
-<<<<<<< HEAD:Tropical-Matrix/terms.hpp
-#include "..//include//test1.hpp"
-
-#include <algorithm>
-=======
->>>>>>> coiquantest:include/terms.hpp
 #include <cmath>
 #include <iostream>
 #include <string>
