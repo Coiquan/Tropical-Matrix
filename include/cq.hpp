@@ -14,7 +14,7 @@ void print(int, bool &, int &, vector<terms> &, int *, int);
 void remove(int);
 int next(const int &);
 int next(int &&);
-void printctr(int *);
+void printctr(int *, int);
 void init();
 } // namespace cq
 void gnrt(int, int, char[], int, fstream &);
@@ -171,14 +171,14 @@ void cq::print(const int p0, bool &printb, int &n2, vector<terms> &termses, int 
     }
     if (sz > szbu && printb)
     {
-        cq::printctr(counters);
+        cq::printctr(counters, N);
         printb = false;
     }
 }
-void cq::printctr(int *counters)
+void cq::printctr(int *counters, const int N)
 {
     fstream file0;
-    file0.open("./counters.txt", ios::app);
+    file0.open("./counters" + to_string(N) + ".txt", ios::app);
     for (int i = 0; i < 8; ++i)
     {
         file0 << counters[i] << " ";
