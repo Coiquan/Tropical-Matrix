@@ -176,21 +176,10 @@ cq::quarter &cq::quarter::operator=(cq::quarter qtr0)
 cq::quarter cq::mutqtr(cq::quarter &a1, cq::quarter &a2)
 {
     vector<atom> qtrconsqs{""};
-    // test
-    int t = 1;
-    // tset
     for (int i = 1; i < int(a1.quarter0.size()); ++i)
         for (int j = 1; j < int(a2.quarter0.size()); ++j)
         {
-            // test
-            cout << "*" << a1.quarter0[i];
-            cout << " " << a2.quarter0[j];
-            // test
             qtrconsqs.push_back(a1.quarter0[i] + a2.quarter0[j]);
-            // test
-            cout << " " << qtrconsqs[t] << endl;
-            ++t;
-            // test
         }
     return qtrconsqs;
 }
