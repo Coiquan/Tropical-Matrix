@@ -5,6 +5,10 @@
 
 using namespace std;
 
+int t1 = 0;
+int t2 = 0;
+
+// latex friendly!
 namespace cq
 {
 class stringcq
@@ -18,7 +22,6 @@ class stringcq
     stringcq(const stringcq &stri0);
     stringcq(string str0);
     stringcq operator+(stringcq stei0);
-    //   bool operator<(stringcq stri0);
     friend ostream &operator<<(ostream &coutao, stringcq stri);
 };
 class atom
@@ -55,7 +58,6 @@ class matrix
 
   public:
     void print(ostream &cout0);
-    void printqtr(int i, ostream &cout0);
     void mut(matrix &mat0);
     matrix(string a, string b, string c, string d);
     matrix(const matrix &mat0);
@@ -69,7 +71,6 @@ class word
 
   public:
     void print(ostream &cout0);
-    void printqtr(int i, ostream &cout0);
     word(string word1);
     word(){};
 };
@@ -81,12 +82,6 @@ ostream &operator<<(ostream &coutao, stringcq stri);
 void cq::word::print(ostream &cout0)
 {
     consq.print(cout0);
-}
-void cq::word::printqtr(int i, ostream &cout0)
-{
-    if (i < 1 && i > 4)
-        throw domain_error("1~4!");
-    consq.printqtr(i, cout0);
 }
 cq::word::word(string word1) : word0(word1)
 {
@@ -112,12 +107,8 @@ void cq::matrix::print(ostream &cout0)
     for (int i = 0; i < 4; ++i)
     {
         qtr[i].print(cout0);
-        cout0 << endl;
+        cout0 << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
     }
-}
-void cq::matrix::printqtr(int i, ostream &cout0)
-{
-    qtr[i].print(cout0);
 }
 void cq::matrix::mut(matrix &mat0)
 {
@@ -170,7 +161,20 @@ void cq::quarter::print(ostream &cout0)
 {
     for (int i = 1; i < int(quarter0.size()); ++i)
     {
-        cout0 << quarter0[i] << endl;
+        ++t1;
+        ++t2;
+        cout0 << quarter0[i];
+        if (t1 == 5)
+        {
+            cout0 << "\\\\";
+            t1 = 0;
+        }
+        if (t2 == 120)
+        {
+            cout0 << endl << "---------------------" << endl;
+            t2 = 0;
+        }
+        cout0 << "\\oplus" << endl;
     }
 }
 cq::quarter cq::quarter::operator+(cq::quarter qtr0)
@@ -270,23 +274,6 @@ cq::stringcq cq::stringcq::operator+(stringcq stei0)
         qtrconsqs.push_back(stei0.stri[i]);
     return qtrconsqs;
 }
-/*bool cq::stringcq::operator<(stringcq stri0)
-{
-    int t1 = 0;
-    int t2 = 0;
-    for (auto i : stri)
-    {
-        t1 += i;
-    }
-    for (auto i : stri0.stri)
-    {
-        t2 += i;
-    }
-    if (t1 < t2)
-        return true;
-    else
-        return false;
-}*/
 ostream &cq::operator<<(ostream &coutao, stringcq stri)
 {
     sort(stri.stri.begin() + 1, stri.stri.end());
@@ -295,28 +282,28 @@ ostream &cq::operator<<(ostream &coutao, stringcq stri)
         switch (stri.stri[i])
         {
         case 1:
-            coutao << "a1";
+            coutao << "a_1";
             break;
         case 2:
-            coutao << "b1";
+            coutao << "b_1";
             break;
         case 3:
-            coutao << "c1";
+            coutao << "c_1";
             break;
         case 4:
-            coutao << "d1";
+            coutao << "d_1";
             break;
         case 5:
-            coutao << "a2";
+            coutao << "a_2";
             break;
         case 6:
-            coutao << "b2";
+            coutao << "b_2";
             break;
         case 7:
-            coutao << "c2";
+            coutao << "c_2";
             break;
         case 8:
-            coutao << "d2";
+            coutao << "d_2";
             break;
         }
     }
