@@ -1,3 +1,4 @@
+
 #include <algorithm>
 #include <iostream>
 #include <string>
@@ -18,7 +19,8 @@ class stringcq
     stringcq(const stringcq &stri0);
     stringcq(string str0);
     stringcq operator+(stringcq stei0);
-    //   bool operator<(stringcq stri0);
+    bool operator<(const stringcq stri0) const;
+    friend bool operator==(stringcq str1, stringcq str2);
     friend ostream &operator<<(ostream &coutao, stringcq stri);
 };
 class atom
@@ -76,6 +78,7 @@ class word
 quarter mutqtr(quarter &a1, quarter &a2);
 ostream &operator<<(ostream &coutao, atom &ao0);
 ostream &operator<<(ostream &coutao, stringcq stri);
+bool operator==(stringcq str1, stringcq str2);
 } // namespace cq
 
 void cq::word::print(ostream &cout0)
@@ -84,7 +87,7 @@ void cq::word::print(ostream &cout0)
 }
 void cq::word::printqtr(int i, ostream &cout0)
 {
-    if (i < 1 && i > 4)
+    if (i < 1 || i > 4)
         throw domain_error("1~4!");
     consq.printqtr(i, cout0);
 }
@@ -270,7 +273,7 @@ cq::stringcq cq::stringcq::operator+(stringcq stei0)
         qtrconsqs.push_back(stei0.stri[i]);
     return qtrconsqs;
 }
-/*bool cq::stringcq::operator<(stringcq stri0)
+bool cq::stringcq::operator<(const stringcq stri0) const
 {
     int t1 = 0;
     int t2 = 0;
@@ -286,7 +289,7 @@ cq::stringcq cq::stringcq::operator+(stringcq stei0)
         return true;
     else
         return false;
-}*/
+}
 ostream &cq::operator<<(ostream &coutao, stringcq stri)
 {
     sort(stri.stri.begin() + 1, stri.stri.end());
@@ -321,4 +324,16 @@ ostream &cq::operator<<(ostream &coutao, stringcq stri)
         }
     }
     return coutao;
+}
+bool cq::operator==(cq::stringcq str1, cq::stringcq str2)
+{
+    int len0 = int(str1.stri.size());
+    if (int(str2.stri.size()) != len0)
+        return false;
+    for (int i = 1; i < len0; ++i)
+    {
+        if (str1.stri[i] != str2.stri[i])
+            return false;
+    }
+    return true;
 }
