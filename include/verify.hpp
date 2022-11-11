@@ -1,5 +1,6 @@
 
 #include <algorithm>
+#include <assert.h>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -87,7 +88,7 @@ void cq::word::print(ostream &cout0)
 }
 void cq::word::printqtr(int i, ostream &cout0)
 {
-    if (i < 1 || i > 4)
+    if (i < 0 || i > 3)
         throw domain_error("1~4!");
     consq.printqtr(i, cout0);
 }
@@ -120,6 +121,7 @@ void cq::matrix::print(ostream &cout0)
 }
 void cq::matrix::printqtr(int i, ostream &cout0)
 {
+    assert(i < 4 && i > 0);
     qtr[i].print(cout0);
 }
 void cq::matrix::mut(matrix &mat0)
